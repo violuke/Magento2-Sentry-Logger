@@ -1,9 +1,10 @@
-<?php namespace Sebwite\Sentry\Raven;
+<?php
 
-use Monolog\Handler\RavenHandler;
+namespace violuke\Sentry\Sentry;
+
 use Monolog\Logger;
 
-class Handler extends RavenHandler
+class Handler extends \Raven_ErrorHandler
 {
     public function __construct($ravenClient, $level = Logger::DEBUG, $bubble = true)
     {
@@ -14,5 +15,9 @@ class Handler extends RavenHandler
         }
 
         parent::__construct($ravenClient, $level, $bubble);
+
+//        $this->registerExceptionHandler();
+//        $this->registerErrorHandler();
+//        $this->registerShutdownFunction();
     }
 }

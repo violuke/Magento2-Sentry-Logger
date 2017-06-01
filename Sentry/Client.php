@@ -1,13 +1,15 @@
-<?php namespace Sebwite\Sentry\Raven;
+<?php
+
+namespace violuke\Sentry\Raven;
 
 use Raven_Client;
 
 /**
  * Raven Client - Uses Raven DNS from env.php
  *
- * @package        Sebwite\Sentry
- * @author         Sebwite
- * @copyright      Copyright (c) 2015, Sebwite. All rights reserved
+ * @package        violuke\Sentry
+ * @author         violuke, based on code by Sebwite
+ * @copyright      Copyright (c) 2015, Sebwite, 2017 violuke. All rights reserved
  */
 class Client extends Raven_Client
 {
@@ -26,7 +28,7 @@ class Client extends Raven_Client
             }
             else
             {
-                $env = include $root . '/../app/etc/env.php';
+                throw new \Exception('Cannot read env file');
             }
 
             $isDeveloper = array_key_exists('MAGE_MODE', $env) && $env[ 'MAGE_MODE' ] === 'developer';
@@ -39,5 +41,6 @@ class Client extends Raven_Client
         }
 
         parent::__construct($ravenDNS, $options);
+//        $this->install();
     }
 }
