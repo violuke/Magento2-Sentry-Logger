@@ -18,7 +18,7 @@ class Client extends Raven_Client
 
         if ( php_sapi_name() !== 'cli' )
         {
-            $root = $_SERVER[ 'DOCUMENT_ROOT' ];
+            $root = __DIR__.'/../../../..';
 
             if ( is_file($envFile = $root . '/app/etc/env.php') )
             {
@@ -26,7 +26,7 @@ class Client extends Raven_Client
             }
             else
             {
-                $env = include $root . '/../app/etc/env.php';;
+                $env = include $root . '/../app/etc/env.php';
             }
 
             $isDeveloper = array_key_exists('MAGE_MODE', $env) && $env[ 'MAGE_MODE' ] === 'developer';
